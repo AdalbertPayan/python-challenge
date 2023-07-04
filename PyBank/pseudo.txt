@@ -1,0 +1,56 @@
+
+
+# We need to read in all of the rows (looping through all of the rows - Day 2, Activity 8)
+
+
+total_profit_losses = 0
+total_months = 0
+
+sum_profit_losses = 0
+
+greatest_increase = 0
+greatest_increase_month = ""
+
+greatest_decrease = 999999999999
+greatest_decrease_month = ""
+
+
+# In the for loop, we need to get the profit/losses
+
+    profit_losses = row[1]
+
+    total_profit_losses = total_profit_losses + profit_losses
+    total_months = total_months + 1
+
+    if total_months > 1:
+      change = profit_losses - last_profit_losses
+
+      sum_profit_losses = sum_profit_losses + change
+
+      if change > greatest_increase:
+        greatest_increase = change
+        greatest_increase_month = row[0]
+
+      if change < greatest_decrease:
+        greatest_decrease = change
+        greatest_decrease_month = row[0]
+
+    last_profit_losses = row[1]
+
+
+# After the loop, print out our summary stuff to the screen
+print('Financial Analysis')
+print('----------------------')
+
+# Print out total_months
+# Print out total_profit_losses
+
+# Print out the average of profit_losses, which is sum_profit_losses / (total_months - 1)
+
+# Print out greatest_increase
+# Print out greatest_increase_month
+
+# Also, remember to write out the summary stuff to a file
+# Use Day 2, activity 10: write_txt_file.py as an example
+
+
