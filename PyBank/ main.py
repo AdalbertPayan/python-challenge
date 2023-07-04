@@ -2,9 +2,8 @@
 import os
 import csv
 
-
-
 pybank_csv = os.path.join('Resources', 'budget_data.csv')
+
 with open(pybank_csv) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
@@ -62,16 +61,16 @@ with open(pybank_csv) as csvfile:
     print(increase)
     print(decrease)
 
-        #export a text file with the results
+    #export a text file with the results
     output_path = os.path.join("Analysis", "analysis.txt")
 
-    with open(output_path, 'w') as txtfile:
+    with open(output_path, 'w') as analysis:
 
         analysis.write("Financial Analysis")
         analysis.write("/n")
         analysis.write("------------------")
         analysis.write("/n")
-        lines = [months, total, average_change, increase, decrease]
+        lines = [months, total, average, increase, decrease]
 
         for line in lines:
             analysis.write(line)
