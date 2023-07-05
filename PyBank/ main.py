@@ -75,5 +75,3 @@ with open(pybank_csv) as csvfile:
         for line in lines:
             analysis.write(line)
             analysis.write("/n")
-
-         
