@@ -34,7 +34,7 @@ with open(pybank_csv) as csvfile:
 
         #calculate The changes in "Profit/Losses" over the entire period, and (then the average of those changes)
         if months_total > 1:
-            change = profit_loss - final_profit_loss
+            change = int(profit_loss) - int(final_profit_loss)
 
             profit_loss_sum += change
 
@@ -50,20 +50,15 @@ with open(pybank_csv) as csvfile:
 
         #create financial analysis and print total months, total profit loss, average change, greatest increase in profits, greatest decrease in profits
         final_profit_loss = profit_loss
-        months = (f"Total Months: {months_total}")
-        total = (f"Total: ${profit_loss_total}")
-        average = (f"Average Change: ${profit_loss_average}")
-        increase = (f"Greatest Increase in Profits: {greatest_profit_increase_date} (${greatest_profit_increase})")
-        decrease = (f"Greatest Decrease in Profits: {greatest_profit_decrease_date} (${greatest_profit_decrease})")
+    months = (f"Total Months: {months_total}")
+    total = (f"Total: ${profit_loss_total}")
+    #help from Simon (tutor)
+    profit_loss_average = profit_loss_sum / (months_total -1)
+    average = (f"Average Change: ${profit_loss_average}")
+    increase = (f"Greatest Increase in Profits: {greatest_profit_increase_date} (${greatest_profit_increase})")
+    decrease = (f"Greatest Decrease in Profits: {greatest_profit_decrease_date} (${greatest_profit_decrease})")
 
-        #calculate the average change in profit/loss
-        if months_total > 1:
-            change = int(profit_loss) - int(final_profit_loss)
-
-            profit_loss_sum = profit_loss_sum + change
-            profit_loss_average = profit_loss_sum / (months_total -1)
-
-#SIMON, talk about how to fix Analysis folder to make each print value print into a new line each time **SIMON
+    #calculate the average change in profit/loss
     print("Financial Analysis")
     print("------------------")
     print(months)
@@ -78,11 +73,11 @@ with open(pybank_csv) as csvfile:
     with open(output_path, 'w') as analysis:
 
         analysis.write("Financial Analysis")
-        analysis.write("/n")
+        analysis.write("\n")
         analysis.write("------------------")
-        analysis.write("/n")
+        analysis.write("\n")
         lines = [months, total, average, increase, decrease]
 
         for line in lines:
             analysis.write(line)
-            analysis.write("/n")
+            analysis.write("\n")
