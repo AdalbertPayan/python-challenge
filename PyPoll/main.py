@@ -36,10 +36,27 @@ print("-------------------------")
 print(f"Total Votes: {total_votes}")
 print("-------------------------")
 
-#A complete list of candidates who received votes
+#A complete list of candidates who received votes, and the percentage of votes each candidate won
+for candidate, votes in candidates.items():
+    print(f"{candidate}: {round((votes/total_votes)*100, 3)}% ({votes})")
+#most votes per candidate and winner of the election based on popular vote
+    if votes > most_votes:
+        most_votes = votes
+        winner = candidate
+print("-------------------------")
+print(f"Winner: {winner}")
+print("-------------------------")
 
-#The percentage of votes each candidate won
+#export a text file with the results
+output_path = os.path.join("Analysis", "election_results.txt")
 
-#total number of votes each candidate won
-
-#The winner of the election based on popular vote
+with open(output_path, 'w') as analysis:
+    analysis.write("Election Results\n")
+    analysis.write("-------------------------\n")
+    analysis.write(f"Total Votes: {total_votes}\n")
+    analysis.write("-------------------------\n")
+    for candidate, votes in candidates.items():
+        analysis.write(f"{candidate}: {round((votes/total_votes)*100, 3)}% ({votes})\n")
+    analysis.write("-------------------------\n")
+    analysis.write(f"Winner: {winner}\n")
+    analysis.write("-------------------------\n")
